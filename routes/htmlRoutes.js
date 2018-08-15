@@ -3,21 +3,25 @@ var db = require("../models");
 module.exports = function(app) {
   // Load index page
   app.get("/", function(req, res) {
-    db.Example.findAll({}).then(function(dbExamples) {
+    db.Raffle.findAll({}).then(function(dbRaffle) {
+      console.log(dbRaffle);
       res.render("index", {
-        msg: "Welcome!",
-        examples: dbExamples
+        msg: "Welcome To Our Raffle Page!",
+        Raffle: dbRaffle
       });
     });
   });
 
-  // Load example page and pass in an example by id
-  app.get("/example/:id", function(req, res) {
-    db.Example.findOne({ where: { id: req.params.id } }).then(function(dbExample) {
-      res.render("example", {
-        example: dbExample
-      });
+  // Load raffle page and pass in an raffle by id
+  app.get("/raffle/:id", function(req, res) {
+    db.Raffle.findOne({ where: { id: req.params.id } }).then(function(dbRaffle) {
+      res.json(dbRaffle);
     });
+  });
+
+  //load up ad raffle page
+  app.get("/raffle", function(req, res) {
+    res.render("addRaffle");
   });
 
   // Render 404 page for any unmatched routes
