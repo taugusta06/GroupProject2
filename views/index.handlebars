@@ -4,7 +4,7 @@
             <div class="col-8 offset-2">
                 <h1>{{msg}}</h1>
                 <h2>Enter into a raffle below!</h2>
-                <form class="clearfix mb-4" action="POST">
+                <form class="clearfix mb-4" id="enter-raffle">
                     <div class="form-group">
                         <label for="entryName">Name</label>
                         <input type="text" id="entryName" class="form-control" aria-describedby="entryName" placeholder="Enter your name please">
@@ -15,7 +15,10 @@
                     </div>
                     <div class="form-group">
                         <label for="category">Select which raffle you would like to enter:</label>
-                        <select class="form-control" id="raffle">
+                        <select class="form-control ticket" id="raffle">
+                            {{#each Raffle}}
+                            <option>{{this.raffleName}}</option>
+                            {{/each}}
                         </select>
                     </div>
                     <button id="submit" class="btn btn-primary float-right">Submit</button>
@@ -35,4 +38,4 @@
 </div>
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="/js/index.js"></script>
+<script src="/js/raffle.js"></script>

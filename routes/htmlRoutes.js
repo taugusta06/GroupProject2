@@ -15,7 +15,7 @@ module.exports = function(app) {
   // Load raffle page and pass in an raffle by id
   app.get("/raffle/:id", function(req, res) {
     db.Raffle.findOne({ where: { id: req.params.id } }).then(function(dbRaffle) {
-      res.json(dbRaffle);
+      res.render("raffle", dbRaffle);
     });
   });
 

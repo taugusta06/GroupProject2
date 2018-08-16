@@ -4,12 +4,12 @@ module.exports = function(sequelize, DataTypes) {
     raffleName: DataTypes.STRING,
     entryCount: DataTypes.INTEGER
   });
-  // Raffle.associate = function(models) {
-  //   Raffle.hasMany(models.Entry, {
-  //     onDelete: "CASCADE",
-  //     foreignKey: "raffleName",
-  //     targetKey: "ticket"
-  //   });
-  // };
+  Raffle.associate = function(models) {
+    Raffle.hasMany(models.Entry, {
+      onDelete: "CASCADE",
+      foreignKey: "raffleName",
+      targetKey: "ticket"
+    });
+  };
   return Raffle;
 };
