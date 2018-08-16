@@ -12,22 +12,9 @@ $(document).ready(function() {
   // Getting the initial list of raffles
   getRaffles();
 
-  function handleEntryFormSubmit(event){
+  function handleEntryFormSubmit(event) {
     event.preventDefault();
-    if (
-      !entryName
-        .val()
-        .trim()
-        .trim()
-    ) {
-      return;
-    }
-    if (
-      !entryEmail
-        .val()
-        .trim()
-        .trim()
-    ) {
+    if (!entryName.val().trim()) {
       return;
     }
     upsertEntry({
@@ -40,23 +27,21 @@ $(document).ready(function() {
   function handleRaffleFormSubmit(event) {
     event.preventDefault();
     // Don't do anything if the name fields hasn't been filled out
-    if (
-      !nameInput
-        .val()
-        .trim()
-        .trim()
-    ) {
+    if (!nameInput.val().trim()) {
       return;
     }
     // Calling the upsertRaffle function and passing in the value of the name input
     upsertRaffle({
-      raffleName: nameInput.val().trim()
+      raffleName: nameInput.val().trim(),
+      entryCount: 0
     });
   }
 
   // A function for creating an Raffle. Calls getRaffles upon completion
   function upsertRaffle(raffleData) {
-    $.entry("/api/raffles", raffleData).then(getRaffles);
+    $.post("/api/raffles", raffleData, function(data) {
+      console.log(data);
+    });
   }
 
   function upsertEntry(entryData) {
@@ -69,9 +54,17 @@ $(document).ready(function() {
     var newTr = $("<tr>");
     newTr.data("raffle", raffleData);
     newTr.append("<td>" + raffleData.name + "</td>");
-    newTr.append("<td># of entries will display when we learn joins in the next activity!</td>");
-    newTr.append("<td><a href='/raffle?raffle_id=" + raffleData.id + "'>Create a Entry</a></td>");
-    newTr.append("<td><a style='cursor:pointer;color:red' class='delete-raffle'>Delete Raffle</a></td>");
+    newTr.append(
+      "<td># of entries will display when we learn joins in the next activity!</td>"
+    );
+    newTr.append(
+      "<td><a href='/raffle?raffle_id=" +
+        raffleData.id +
+        "'>Create a Entry</a></td>"
+    );
+    newTr.append(
+      "<td><a style='cursor:pointer;color:red' class='delete-raffle'>Delete Raffle</a></td>"
+    );
     return newTr;
   }
 

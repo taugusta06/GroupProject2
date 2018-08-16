@@ -32,6 +32,7 @@ module.exports = function(app) {
 
   // Create a new example
   app.post("/api/raffles", function(req, res) {
+    console.log(req.body);
     db.Raffle.create(req.body).then(function(dbRaffle) {
       res.json(dbRaffle);
     });

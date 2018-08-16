@@ -17,11 +17,13 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false
     }
   });
-  Entry.associate = function (models) {
-      Entry.belongsTo(models.Raffle, {
-          foreignKey: "ticket",
-          targetKey: "raffleName"
-      });
-  }
+  Entry.associate = function(models) {
+    Entry.belongsTo(models.Raffle, {
+      foreignKey: {
+        allowNull: false
+      }
+    });
+  };
+
   return Entry;
 };
