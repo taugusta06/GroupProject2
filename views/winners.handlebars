@@ -2,6 +2,7 @@
   <div class="row">
     <div class="col-8 offset-2">
       <div class="card mt-4">
+        {{#each Winners}}
         <div class="card-body">
           <h5 class="card-title">Winners</h5>
           <p>
@@ -13,6 +14,7 @@
             <strong>Raffle Won:</strong> {{Winners.raffleWon}}</p>
             <a href="/">← Back To Home</a>
         </div>
+        {{/each}}
       </div>
     </div>
   </div>

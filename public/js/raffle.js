@@ -7,25 +7,24 @@ $(document).ready(function() {
   // an raffle
   $(document).on("submit", "#raffle-form", handleRaffleFormSubmit);
   $(document).on("click", ".delete-raffle", handleDeleteButtonPress);
-  $("#enter-raffle").on("submit", handleEntryFormSubmit);
+  // $("#enter-raffle").on("submit", handleEntryFormSubmit);
 
   // Getting the initial list of raffles
   getRaffles();
 
-  function handleEntryFormSubmit(event) {
-    event.preventDefault();
-    if (!entryName.val().trim()) {
-      return;
-    }
-    upsertEntry({
-      userName: entryName.val().trim(),
-      email: entryEmail.val().trim()
-    });
-  }
+  // function handleEntryFormSubmit(event) {
+  //   event.preventDefault();
+  //   if (!entryName.val().trim()) {
+  //     return;
+  //   }
+  //   upsertEntry({
+  //     userName: entryName.val().trim(),
+  //     email: entryEmail.val().trim()
+  //   });
+  // }
 
   // A function to handle what happens when the form is submitted to create a new Raffle
   function handleRaffleFormSubmit(event) {
-    event.preventDefault();
     // Don't do anything if the name fields hasn't been filled out
     if (!nameInput.val().trim()) {
       return;
@@ -44,23 +43,19 @@ $(document).ready(function() {
     });
   }
 
-  function upsertEntry(entryData) {
-    $.entry("/api/entries", entryData).then(getEntries);
-  }
+
 
   // Function for creating a new list row for Raffles
   function createRaffleRow(raffleData) {
     console.log(raffleData);
     var newTr = $("<tr>");
     newTr.data("raffle", raffleData);
-    newTr.append("<td>" + raffleData.name + "</td>");
+    newTr.append("<td>" + raffleData.raffleName + "</td>");
     newTr.append(
-      "<td># of entries will display when we learn joins in the next activity!</td>"
+      "<td># of entries!</td>"
     );
     newTr.append(
-      "<td><a href='/raffle?raffle_id=" +
-        raffleData.id +
-        "'>Create a Entry</a></td>"
+      "<td><a href='/'>Enter Raffle!</a></td>"
     );
     newTr.append(
       "<td><a style='cursor:pointer;color:red' class='delete-raffle'>Delete Raffle</a></td>"
@@ -96,12 +91,12 @@ $(document).ready(function() {
   }
 
   // Function for handling what to render when there are no raffles
-  function renderEmpty() {
-    var alertDiv = $("<div>");
-    alertDiv.addClass("alert alert-danger");
-    alertDiv.text("You must create an Raffle before you can add a Entry.");
-    raffleContainer.append(alertDiv);
-  }
+  // function renderEmpty() {
+  //   var alertDiv = $("<div>");
+  //   alertDiv.addClass("alert alert-danger");
+  //   alertDiv.text("You must create an Raffle before you can add a Entry.");
+  //   raffleContainer.append(alertDiv);
+  // }
 
   // Function for handling what happens when the delete button is pressed
   function handleDeleteButtonPress() {
@@ -112,7 +107,7 @@ $(document).ready(function() {
     var id = listItemData.id;
     $.ajax({
       method: "DELETE",
-      url: "/api/raffles/" + id
-    }).then(getRaffle);
+      url: "/api/raffle/" + id
+    }).then(getRaffles);
   }
 });

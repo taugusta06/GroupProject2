@@ -5,10 +5,5 @@ module.exports = function(sequelize, DataTypes) {
     entryCount: DataTypes.INTEGER
   });
   
-  Raffle.associate = function(models) {
-    Raffle.hasMany(models.Entry, {
-      onDelete: "CASCADE"
-    });
-  };
   return Raffle;
 };

@@ -17,7 +17,7 @@
                         <label for="category">Select which raffle you would like to enter:</label>
                         <select class="form-control ticket" id="raffle">
                             {{#each Raffle}}
-                            <option>{{this.raffleName}}</option>
+                                <option value="{{this.raffleName}}">{{this.raffleName}}</option>
                             {{/each}}
                         </select>
                     </div>
@@ -28,7 +28,6 @@
                     {{#each Raffle}}
                     <li data-id="{{this.id}}" class="list-group-item">
                         <a href="raffle/{{this.id}}">{{this.raffleName}}</a>
-                        <button class="btn btn-danger float-right delete">ｘ</button>
                     </li>
                     {{/each}}
                 </ul>
@@ -38,4 +37,4 @@
 </div>
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="/js/raffle.js"></script>
+<script src="/js/entries.js"></script>

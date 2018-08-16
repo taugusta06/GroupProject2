@@ -3,14 +3,14 @@ var db = require("../models");
 module.exports = function(app) {
   // Get all entries
   app.get("/api/entries", function(req, res) {
-    db.entries.findAll({}).then(function(dbEntries) {
+    db.Entry.findAll({}).then(function(dbEntries) {
       res.json(dbEntries);
     });
   });
 
-  // Create a new example
-  app.post("/api/", function(req, res) {
-    db.entries.create(req.body).then(function(dbEntry) {
+  // Create a new entry
+  app.post("/api/entries", function(req, res) {
+    db.Entry.create(req.body).then(function(dbEntry) {
       res.json(dbEntry);
     });
   });
