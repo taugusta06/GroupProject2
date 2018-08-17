@@ -4,7 +4,8 @@ module.exports = function(app) {
   // Get all entries
   app.get("/api/entries", function(req, res) {
     db.Entry.findAll({}).then(function(dbEntries) {
-      res.json(dbEntries);
+      res.render("showentries", {Entry: dbEntries});
+
     });
   });
 

@@ -1,3 +1,9 @@
 .list-group-item {
   line-height: 2.5;
 }
+body {
+  font-size:16px;
+  color: gray;
+  line-height: 24px;
+  background-color: aqua;
+}

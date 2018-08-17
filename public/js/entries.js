@@ -10,7 +10,7 @@ $(document).ready(function() {
     // getEntries();
 
     function handleEntryFormSubmit(event) {
-      event.preventDefault();
+      
       if (!entryName.val().trim() || !entryEmail.val().trim() ) {
         return;
       }
@@ -27,18 +27,18 @@ $(document).ready(function() {
         });
       }
 // Function for retrieving raffles and getting them ready to be rendered to the page
-function getEntries() {
-    $.get("/api/entries", function(data) {
-        // var entriesToAdd = [];
-        // for (var i = 0; i < data.length; i++) {
-        //   entriesToAdd.push(data[i]);
-        // }
-        res.send(data);
-      entryName.val("");
-      entryEmail.val("");
-      ticket.val("");
-      console.log(entryName, entryEmail, ticket);
-    });
-  }
+// function getEntries() {
+//     $.get("/api/entries", function(data) {
+//         // var entriesToAdd = [];
+//         // for (var i = 0; i < data.length; i++) {
+//         //   entriesToAdd.push(data[i]);
+//         // }
+//         res.send(data);
+//       entryName.val("");
+//       entryEmail.val("");
+//       ticket.val("");
+//       console.log(entryName, entryEmail, ticket);
+//     });
+//   }
 });
    
